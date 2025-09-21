@@ -1,0 +1,612 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-logo {
+  height: 150px;           /* 👈 Înălțime fixă — ajustează după titlu */
+  width: auto;            /* Păstrează proporțiile */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  vertical-align: middle; /* Aliniere verticală cu textul */
+}
+
+.app-logo:hover {
+  transform: scale(1.03);
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;     /* 👈 Alinează vertical logo + text la centru */
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .app-logo {
+    height: 50px; /* Mai mic pe mobile */
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-text {
+    text-align: center;
+  }
+}
+/* App.css */
+
+/* Reset & variabile */
+:root {
+  --primary-color: #333;
+  --secondary-color: #555;
+  --accent-color: #ff4d4d;
+  --bg-light: #f9f9f9;
+  --card-bg: #fff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--bg-light);
+}
+
+/* Container principal */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-title {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* Form container */
+.form-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+}
+
+.person-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-input,
+.form-file {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-file:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.submit-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #3a7bc8;
+}
+
+/* Previzualizare foto în formular */
+.photo-preview {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 2px solid #eee;
+}
+
+/* Container liste persoane */
+.persons-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+/* Card persoană */
+.person-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.person-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Foto persoană */
+.person-photo {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px dashed #ccc;
+  transition: border 0.2s;
+}
+
+.person-photo.has-photo {
+  border: none;
+}
+
+/* Texte */
+.person-name {
+  margin: 10px 0;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.person-detail {
+  margin: 5px 0;
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+/* Email cu culoare specifică 
+.person-detail:has(> span.email-icon) {
+  color: #e74c3c;
+}
+*/
+.email-icon {
+  color: #e74c3c;
+}
+
+/* Buton ștergere */
+.delete-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: auto;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #e63c3c;
+}
+
+/* Responsive pentru mobile */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .persons-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .person-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+.person-card {
+  /* ... existent ... */
+  min-height: 400px; /* ca să aibă spațiu pentru toate câmpurile */
+}
+
+.person-detail {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+/* Responsive pentru ecrane mici */
+@media (max-width: 768px) {
+  .person-card {
+    padding: 15px;
+  }
+  .person-name {
+    font-size: 1.2rem;
+  }
+}
+/* Stiluri pentru filtru */
+.filter-container {
+  margin: 20px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.filter-container label {
+  font-weight: 600;
+  margin-right: 10px;
+  color: #333;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.file-upload-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.file-upload-label:hover {
+  background-color: #e0e0e0;
+}
+.file-name {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #4a90e2;
+  font-weight: 500;
+}
+/* Titlu principal */
+.main-title {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 20px 0 10px;
+  letter-spacing: 0.5px;
+}
+
+/* Subtitlu */
+.subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 30px;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+/* Optional: efect subtil la hover pe titlu */
+.main-title:hover {
+  color: #e74c3c;
+  transition: color 0.3s ease;
+}
+.subtitle {
+  /* ... existent ... */
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+  display: inline-block;
+  margin: 10px auto 30px;
+}
+.main-title {
+  /* ... existent ... */
+  background: linear-gradient(90deg, #e74c3c, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+/* Wrapper pentru inputul de dată */
+.date-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Label explicativ */
+.date-label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+/* Input de dată */
+.date-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Tooltip (title) apare la hover */
+.date-input:hover {
+  border-color: #3498db;
+}
+.preview-normalized {
+  font-size: 0.85rem;
+  color: #27ae60;
+  margin-top: 5px;
+  padding: 5px;
+  background: #e8f5e9;
+  border-radius: 6px;
+  display: inline-block;
+}
+/* Mesaj de succes */
+.success-message {
+  padding: 15px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Detalii aliniate la stânga */
+.person-details-left {
+  text-align: left;        /* 👈 Cheia! */
+  width: 100%;
+  margin: 10px 0;
+}
+
+.person-details-left .person-detail {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Păstrează numele centrat */
+.person-name {
+  margin: 10px 0;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-align: center;      /* 👈 Numele rămâne centrat */
+}
+
+/* Poza rămâne centrată (deja e) */
+.person-photo {
+  /* ... existent ... */
+  display: block;
+  margin: 0 auto;          /* 👈 Asigură-te că e centrată */
+}
+/* Container pentru filtre pe aceeași linie */
+.filters-inline {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+/* Bara de căutare */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 20px;
+  padding-right: 40px; /* spațiu pentru butonul de ștergere */
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+  border-color: #3498db;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+/* Buton de ștergere căutare */
+.clear-search {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.clear-search:hover {
+  background: #f0f0f0;
+  color: #e74c3c;
+}
+
+/* Responsiv */
+@media (max-width: 768px) {
+  .search-input {
+    width: 90%;
+    max-width: none;
+  }
+}
+.search-input:focus::placeholder {
+  color: transparent;
+}
+/* Container buton adăugare */
+.add-member-button-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* Buton adăugare membru */
+.add-member-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-member-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.add-member-button:active {
+  transform: translateY(0);
+}
+.self-tag {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1976d2;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+/* Stil pentru placeholder în dropdown */
+.form-input option:disabled {
+  color: #999;
+  font-weight: normal;
+}
