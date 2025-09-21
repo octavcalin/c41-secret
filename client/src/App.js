@@ -87,7 +87,7 @@ function App() {
     }
 
     try {
-      await axios.delete(`http://localhost:5001/api/persons/${id}`);
+      await axios.delete(`http://localhost:5000/api/persons/${id}`);
       alert('✅ Înregistrarea a fost ștearsă!');
       loadPersons();
     } catch (error) {
@@ -102,7 +102,7 @@ function App() {
 
   const loadPersons = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/persons');
+      const res = await axios.get('http://localhost:5000/api/persons');
       setPersons(res.data);
     } catch (error) {
       console.error('Eroare la încărcare persoane:', error);
@@ -203,7 +203,7 @@ function App() {
     }
 
     try {
-      await axios.post('http://localhost:5001/api/persons', formDataToSend, {
+      await axios.post('http://localhost:5000/api/persons', formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -469,7 +469,7 @@ function App() {
           .map(person => (
             <div key={person._id} className="person-card">
               <img
-                src={person.photo ? `http://localhost:5001${person.photo}` : '/default-avatar2.jpg'}
+                src={person.photo ? `http://localhost:5000${person.photo}` : '/default-avatar2.jpg'}
                 alt="Foto"
                 className={`person-photo ${person.photo ? 'has-photo' : ''}`}
                 onError={(e) => {
