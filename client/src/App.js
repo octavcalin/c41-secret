@@ -473,7 +473,7 @@ function App() {
           .map(person => (
             <div key={person._id} className="person-card">
               <img
-                src={person.photo ? `${API_BASE}${person.photo}` : '/default-avatar2.jpg'}
+                src={person.photo || '/default-avatar2.jpg'}
                 alt="Foto"
                 className={`person-photo ${person.photo ? 'has-photo' : ''}`}
                 onError={(e) => {
