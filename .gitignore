@@ -9,12 +9,27 @@
 .pnp.js
 
 # Folders to be ignored
+client/node_modules/
+client/build/
 node_modules/
 dist/
 build/
 .env
+client/.env.local
 .vscode/
 uploads/
+.DS_Store
+.git
+.gitignore
+.gitlab-ci.yml
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+coverage/
+*.log
 
 
 # testing
