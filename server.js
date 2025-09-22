@@ -189,7 +189,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Pornire server
+// Pornire serverr
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server rulează pe http://localhost:${PORT}`);
 });
