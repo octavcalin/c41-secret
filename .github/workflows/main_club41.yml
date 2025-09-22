@@ -61,5 +61,6 @@ jobs:
         with:
           app-name: 'club41'
           slot-name: 'Production'
-          package: .
+          package: ./build
+
           
