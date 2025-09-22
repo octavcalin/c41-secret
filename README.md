@@ -1,7 +1,7 @@
 # C41-secretariat
 
 
-test5
+test6
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
