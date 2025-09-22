@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5001' ;
+
 // Generează un ID unic pentru utilizatorul curent (dacă nu există)
 const getOrCreateUserId = () => {
   let userId = localStorage.getItem('user_id');
@@ -31,7 +33,6 @@ function App() {
     'Club 41 Nr.4 Craiova',
     'Club 41 Nr.5 Câmpulung',
     'Club 41 Nr.6 Suceava',
-    'Club 41 Nr.5 Câmpulung',
     'Club 41 Nr.7 Brașov',
     'Club 41 Nr.8 Slatina',
     'Club 41 Nr.9 Craiova',
@@ -87,7 +88,7 @@ function App() {
     }
 
     try {
-      await axios.delete(`https://club41-gcdwaqgfhwdsfehf.westeurope-01.azurewebsites.net/api/persons/${id}`);
+      await axios.delete(`${API_BASE}/api/persons/${id}`);
       alert('✅ Înregistrarea a fost ștearsă!');
       loadPersons();
     } catch (error) {
@@ -102,7 +103,7 @@ function App() {
 
   const loadPersons = async () => {
     try {
-      const res = await axios.get('http://club41-gcdwaqgfhwdsfehf.westeurope-01.azurewebsites.net/api/persons');
+      const res = await axios.get(`${API_BASE}/api/persons`);
       setPersons(res.data);
     } catch (error) {
       console.error('Eroare la încărcare persoane:', error);
@@ -202,8 +203,11 @@ function App() {
       formDataToSend.append('photo', formData.photo);
     }
 
+    console.log('➡️ API_BASE:', API_BASE);
+    console.log('➡️ URL final:', `${API_BASE}/api/persons`);
+
     try {
-      await axios.post('https://club41-gcdwaqgfhwdsfehf.westeurope-01.azurewebsites.net/api/persons', formDataToSend, {
+      await axios.post(`${API_BASE}/api/persons`, formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -469,7 +473,7 @@ function App() {
           .map(person => (
             <div key={person._id} className="person-card">
               <img
-                src={person.photo ? `https://club41-gcdwaqgfhwdsfehf.westeurope-01.azurewebsites.net${person.photo}` : '/default-avatar2.jpg'}
+                src={person.photo ? `${API_BASE}${person.photo}` : '/default-avatar2.jpg'}
                 alt="Foto"
                 className={`person-photo ${person.photo ? 'has-photo' : ''}`}
                 onError={(e) => {
