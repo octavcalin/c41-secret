@@ -8,6 +8,15 @@
 /.pnp
 .pnp.js
 
+# Folders to be ignored
+node_modules/
+dist/
+build/
+.env
+.vscode/
+uploads/
+
+
 # testing
 /coverage
 
